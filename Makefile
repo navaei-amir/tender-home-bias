@@ -5,5 +5,10 @@
 # <TAB>recipe step 1
 # <TAB>recipe step 2
 
+data/derived/ted-columns.csv: data/raw/european-commission/ted-sample.csv
+	mkdir -p data/derived
+	csvcut -c ID_NOTICE_CAN,ISO_COUNTRY_CODE,WIN_COUNTRY_CODE,AWARD_VALUE_EURO data/raw/european-commission/ted-sample.csv > data/derived/ted-columns.csv
+
 data/raw/european-commission/ted-sample.csv:
+	mkdir -p data/raw/european-commission
 	curl -Lo data/raw/european-commission/ted-sample.csv "https://github.com/codedthinking/tender-home-bias/releases/download/v1.0/ted-sample.csv" 
